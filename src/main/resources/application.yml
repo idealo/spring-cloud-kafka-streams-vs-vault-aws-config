@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: "@project.artifactId@"
+  main:
+    banner-mode: "off"
+  cloud:
+    stream:
+      bindings:
+        my-input:
+          destination: <kafka-topic>
+      kafka:
+        streams:
+          binder:
+            brokers: <kafka-broker>
+            auto-create-topics: false
+          bindings:
+            my-input:
+              consumer:
+                application-id: ${spring.application.name}
+                key-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value-serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                use-native-decoding: true
+                materialized-as: <data-store>
+cloud:
+  aws:
+    region:
+      static: eu-central-1
+    stack:
+      auto: false

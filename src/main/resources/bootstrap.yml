@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    vault:
+      aws:
+        enabled: true
+        role: <vault aws role>
+        backend: <vault aws secrets engine>
+        access-key-property: cloud.aws.credentials.accessKey
+        secret-key-property: cloud.aws.credentials.secretKey
+      token: <vault token>
+      host: <vault host>
+      port: 443
+      connection-timeout: 5000
+      read-timeout: 15000
+      scheme: https
+      config:
+        lifecycle:
+          enabled: true
